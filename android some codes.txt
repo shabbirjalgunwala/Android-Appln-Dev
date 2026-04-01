@@ -1,0 +1,191 @@
+android:label="DemoApp-ТҮВСА"
+android:roundIcon="@mipmap/ic_launcher_round"
+android:supportsRtl="true"
+android:theme="@style/Theme. DemoAppTYВСА"
+tools:targetApi="31">
+<activity
+android:name=".Dashboard_Activity"
+android:exported="true"
+android:theme="@style/Theme. DemoAppTYBCA">
+<intent-filter>
+<action android:name="android.intent.action.MAIN" />
+<category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+</activity>
+sactivity android:name=". Login Activity">s/activityz
+sactivity android:name=". Call Activity"></activity>
+</application>
+</manifest>
+
+
+port android.view.View;
+port android.widget.EditText;
+port androidx.annotation.Nullable;
+port androidx.appcompat.app.AppCompatActivity;
+public class Call_Activity extends AppCompatActivity {
+2 usages
+EditText txtMobileNo;
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.call_layout);
+txtMobilello = findViewById(R.id.txtMobileNo);
+}
+1 usage
+public void makeCell(View v) {
+Intent i = new Intent(Intent.ACTION_CALL);
+i.setData(Uri.parse(uriString: "tel:"+txtMobileNo.getText().toString()));
+startActivity(i);
+}
+
+
+public class Call_Activity extends AppCompatActivity {
+2 usages
+EditText txtMobileNo;
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.call_layout);
+txtMobileNo = findViewById(R.id.txtMobileNo);
+}
+1 usage
+public void makeCall(View v) {
+Intent i = new Intent(Intent.ACTION_DIAL);
+i.setData(Uri.parse(uriString: "tel: "+txtMobileNo.getText().toString()));
+startActivity(i);
+}
+}
+
+
+protected void onCreate(@Nullable Bundle savedInstancestate){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.sms_layout);
+txtSMSMobNo = findViewById(R.id.txtSMSMobNo);
+txtSMSMessage = findViewById(R.id.txtSMSMessage);
+}
+2 usages
+public void sendSMS(View v) {
+Intent i = new Intent(Intent.ACTION_SENDTO);
+i.setData(Uri.parse(uriString: "smsto:"+txtSMSMobNo.getText().toString()));
+i.putExtra(name: "sms_body", txtSMSMessage.getText().toString());
+startActivity(i);
+}
+
+
+xml version="1.0" encoding="utf-8"?>
+manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools">
+suses-permission andcoid:name="android.permission.CALL PHONE"zsluses-pecmiss
+suses-permission android:name="android.permission.SEND SMS">k/uses-permissio
+<application
+android:allowBackup="true"
+android:dataExtractionRules="@xml/data_extraction_rules"
+android:fullBackupContent="@xml/backup_rules"
+android:icon="@mipmap/ic_launcher"
+android:label="DemoApp-TYBCA"
+android:roundIcon="@mipmap/ic_launcher_round"
+android:supportsRtl="true"
+android:theme="@style/Theme. DemoAppTYBCA"
+tools:targetApi="31">
+<activity
+android:name=".Dashboard_Activity"
+android: exported="true"
+A-17Lama nemenTVRCA">
+
+
+public class Login_Activity extends AppCompatActivity {
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+setContentView(R.layout.login_layout);
+txtUsername = findViewById(R.id.txtUsername);
+txtPassword = findViewById(R.id.txtPassword);
+1 usage
+public void checkLogin(View v) {
+if(txtUsername.getText().toString().equalsIgnoreCase (anotherString: "admin")
+&& txtPassword.getText().toString().equalsIgnoreCase (anotherString: "1234"))
+{
+}
+Intent i = new Intent(packageContext: Login_Activity.this, Menu_Activity.class);
+startActivity(i);
+else
+{
+Toast.makeText(context Login_Activity.this, text: "Sorry !!! Invalid User.", Toast.LENGTH_LONG).show(
+}
+}
+}
+
+
+package com.imrd.intentdemo,
+import android.os.Bundle;
+import android.widget.TextView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+public class Menu_Activity extends AppCompatActivity {
+1 usage
+TextView txtName, txtMobileNo;
+@Override
+protected void onCreate(@Nullable Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.menu_layout);
+String name = getIntent().getStringExtra(name: "NAME");
+String mabng = getIntent().getStringExtra(name: "MOBILENO");
+txtName = findViewById(R.id.txtName);
+txtMobileNo = findViewById(R.id.txtMobileNo);
+}
+}
+
+
+txtEMail = findViewById(R.id.txtEMail);
+txtEMailSubject = findViewById(R.id.txtEMailSubject);
+txtEmailMessage = findViewById(R.id.txtEMailMessage);
+}
+1 usage
+public void sendEmail (View v) {
+String[] email = {txtEMail.getText().toString()};
+Intent i = new Intent(Intent.ACTION_SENDTO);
+i.setData(Uri.parse(urlString: "mailto:"));
+1.putExtra(Intent.EXTRA_EMAIL,email);
+i.putExtra(Intent.EXTRA_SUBJECT,txtEMailSubject.getText().toString());
+i.putExtra(Intent.EXTRA_TEXT,txtEmailMessage.getText().toString());
+startActivity(Intent.createChooser(i, title: "EMail Apps"));
+}
+
+
+public class Dashboard_Activity extends AppCompatActivity {
+0143
+public void showDatePicker (View v) {
+DatePickerDialog dpd = new DatePickerDialog(
+context: Dashboard_Activity.this,
+new DatePickerDialog.OnDateSetListener() {
+1 usage
+@Override
+public void onDateSet (DatePicker view, int year, int month, int dayOfMonth) {
+Toast.makeText(context: Dashboard_Activity.this,
+text: "Date Selected: "+dayOfMonth+"/"+(month+1)+"/"+year,
+Toast.LENGTH_LONG).show();
+}
+},
+year,
+month,
+day
+);
+dpd.show();
+}
+no usages
+public void showTimePicker (View v)
+
+
+1 usage
+public void showTimePicker(View v) {
+Calendar c = Calendar.getInstance();
+int hours = c.get(Calendar.HOUR_OF_DAY);
+int minutes = c.get(Calendar.MINUTE);
+TimePickerDialog tpd = new TimePickerDialog(
+context: Dashboard_Activity.this,
+listener: null,
+hours,
+minutes,
+is24HourView: false
+);
+tpd.show();
+}
+}
