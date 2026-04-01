@@ -1,0 +1,187 @@
+//User Details Project
+
+//AndroidMenifest.xml
+    <activity
+        android:name=".UserDetails"
+        android:exported="true"
+        android:theme="@style/Theme.AdditionExample">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
+
+//user_details.xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter the Name: "></TextView>
+
+        <EditText
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Eg. George Voll"></EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Gender:"></TextView>
+
+        <RadioGroup
+            android:id="@+id/gender"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:layout_weight="1"></RadioButton>
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:layout_weight="1"></RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Subjects: "></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chkbox1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Android Development"
+                android:layout_weight="1"></CheckBox>
+            <CheckBox
+                android:id="@+id/chkbox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ReactJS"
+                android:layout_weight="1"></CheckBox>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chkbox3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AngularJS"
+                android:layout_weight="1"></CheckBox>
+            <CheckBox
+                android:id="@+id/chkbox4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ASP.NET"
+                android:layout_weight="1"></CheckBox>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submitData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Details"></Button>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:id="@+id/messageshow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:id="@+id/messageshow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:id="@+id/messageshow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+
+    </LinearLayout>
+
+
+//UserDetails.java
+    public class UserDetails extends AppCompatActivity{
+        @Override
+        protected void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.user_details);
+
+            Button submitData = findViewById(R.id.submitData);
+            EditText txtName = findViewById(R.id.txtName);
+            TextView messageshow1 = findViewById(R.id.messageshow1);
+            TextView messageshow2 = findViewById(R.id.messageshow2);
+            TextView messageshow3 = findViewById(R.id.messageshow3);
+            RadioButton male = findViewById(R.id.male);
+            RadioButton female = findViewById(R.id.female);
+            CheckBox chkbox1 = findViewById(R.id.chkbox1);
+            CheckBox chkbox2 = findViewById(R.id.chkbox2);
+            CheckBox chkbox3 = findViewById(R.id.chkbox3);
+            CheckBox chkbox4 = findViewById(R.id.chkbox4);
+
+
+            submitData.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String name = txtName.getText().toString();
+                    String message1 = "User Details: \nName : " + name;
+                    messageshow1.setText(message1);
+                    txtName.setText("");
+
+                    if (male.isChecked())
+                    {
+                        messageshow2.setText("Gender: " + male.getText().toString());
+
+                    }
+                    else if (female.isChecked())
+                    {
+                        messageshow2.setText("Gender: " + female.getText().toString());
+                    }
+                    else{
+                        messageshow2.setText("Gender: Not selected");
+                    }
+
+                    String message3 = "Selected Subjects: \n";
+                    if(chkbox1.isChecked()){
+                        message3 = message3 + "\t\t" +chkbox1.getText().toString() + "\n";
+                    }
+                    if (chkbox2.isChecked())
+                    {
+                        message3 = message3 + "\t\t" +chkbox2.getText().toString() + "\n";
+                    }
+                    if(chkbox3.isChecked()){
+                        message3 = message3 + "\t\t" +chkbox3.getText().toString() + "\n";
+                    }
+                    if (chkbox4.isChecked())
+                    {
+                        message3 = message3 + "\t\t" +chkbox4.getText().toString() + "\n";
+                    }
+                    messageshow3.setText(message3);
+                }
+            });
+        }
+    }
